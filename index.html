@@ -25,6 +25,42 @@
 
         <input type="submit" value="Submit">
     </form>
+
+    <form id="slackForm2" onsubmit="getConversationsList(event)">
+        <label for="token">Token:</label>
+        <input type="text" id="token" name="token" required><br><br>
+        
+        <input type="submit" value="Get Conversations List">
+    </form>
+    
+    <div id="result"></div>
+
+
+    <script>
+        function getConversationsList(event) {
+            event.preventDefault();
+
+            const token = document.getElementById("token").value;
+            const url = "https://slack.com/api/conversations.list";
+
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    </script>
+
 </body>
 
 </html>
+
