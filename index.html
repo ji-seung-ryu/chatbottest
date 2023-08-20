@@ -118,6 +118,50 @@
             });
         }
     </script>
+
+
+    <h1>Slack create channel</h1>
+
+    <form id="slackForm4">
+        <label for="token">OAuth token: </label>
+        <input type="text" id="token4" name="token" required><br>
+        <label for="channelName">channel name: </label>
+        <input type="text" id="channelName" name="channelName" required><br>
+        <button type="submit">create channel</button>
+    </form>
+
+    <div id="result4"></div>
+
+    <script>
+    document.getElementById("slackForm4").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const token = document.getElementById("token4").value;
+      const channelName = document.getElementById("channelName").value;
+
+      const apiUrl = `https://slack.com/api/conversations.create?name=${channelName}`;
+
+      fetch(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${token4}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        const resultDiv = document.getElementById("result4");
+        if (data.ok) {
+          resultDiv.innerHTML = `<p>${JSON.stringify(data.channel)}</p>`;
+        } else {
+          resultDiv.innerHTML = `<p>${data.error}</p>`;
+        }
+      })
+      .catch(error => {
+        const resultDiv = document.getElementById("result4");
+        resultDiv.innerHTML = `<p>${error}</p>`;
+      });
+    });
+  </script>
+
 </body>
 
 </html>
