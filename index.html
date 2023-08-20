@@ -136,7 +136,7 @@
     document.getElementById("slackForm4").addEventListener("submit", function(event) {
       event.preventDefault();
 
-      const token = document.getElementById("token4").value;
+      const token4 = document.getElementById("token4").value;
       const channelName = document.getElementById("channelName").value;
 
       const apiUrl = `https://slack.com/api/conversations.create?name=${channelName}`;
