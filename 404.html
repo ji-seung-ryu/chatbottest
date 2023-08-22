@@ -6,9 +6,9 @@
     var path = window.location.pathname;
 
     // URL 경로에 따라 조건을 체크하고 리다이렉션을 수행합니다
-     if (path === "/chatbottest/1/") {
+     if (path === "/chatbottest/1") {
       // "/1" 경로로 접근 시 new.html을 표시합니다
-      window.location.href = "/new.html";
+      window.location.href = "chatbottest/new.html";
     } else {
       // 그 외의 경우에는 에러 페이지를 표시합니다
       document.write("404 - Not Found");
